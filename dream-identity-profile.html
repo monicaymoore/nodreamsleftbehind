@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Dream Identity Profile | No Dreams Left Behind</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --periwinkle: #5D5FA6;
+    --gold: #C9A15A;
+    --cream: #FAF6ED;
+    --plumnavy: #241A38;
+    --lavender: #ECE6F7;
+    --ink: #2B2140;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Jost', sans-serif;
+    background: radial-gradient(circle at 20% 10%, #EFE9F8 0%, var(--cream) 45%, var(--cream) 100%);
+    color: var(--ink);
+    min-height:100vh;
+    padding: 40px 18px 60px;
+    line-height:1.6;
+  }
+  .wrap{ max-width:680px; margin:0 auto; }
+  .mark{ width:34px; height:34px; margin:0 auto 14px; position:relative; }
+  .mark::before{ content:""; position:absolute; inset:0; border:2px solid var(--gold); border-radius:50%; }
+  .mark::after{ content:""; position:absolute; left:50%; top:50%; width:14px; height:14px; transform:translate(-50%,-50%) rotate(45deg); border:1px solid var(--gold); border-radius:2px; }
+  .eyebrow{ font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--periwinkle); text-align:center; font-weight:600; margin-bottom:6px; }
+  h1{ font-family:'Cormorant Garamond', serif; font-weight:600; font-size:36px; text-align:center; color:var(--plumnavy); line-height:1.15; margin-bottom:14px; }
+  .sub{ text-align:center; color:#5b5170; font-size:15.5px; max-width:480px; margin:0 auto 34px; }
+
+  .picker{
+    display:flex; gap:8px; margin-bottom:30px;
+    background:#fff; border-radius:999px; padding:6px;
+    box-shadow: 0 12px 30px -18px rgba(36,26,56,0.3);
+    border: 1px solid rgba(93,95,166,0.12);
+  }
+  .picker button{
+    flex:1; border:none; background:transparent; cursor:pointer;
+    font-family:'Jost',sans-serif; font-weight:600; font-size:13.5px;
+    padding: 12px 8px; border-radius:999px; color:#8a80a0;
+    transition: background .15s ease, color .15s ease;
+  }
+  .picker button.active{ background: var(--periwinkle); color:#fff; }
+
+  .card{
+    background:#fff; border-radius:18px;
+    box-shadow: 0 30px 60px -25px rgba(36,26,56,0.3);
+    border: 1px solid rgba(93,95,166,0.12);
+    padding: 40px 36px;
+    display:none;
+  }
+  .card.active{ display:block; animation: fadeIn .35s ease; }
+  @media (max-width:560px){ .card{ padding: 30px 22px; } }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+
+  .result-title{
+    font-family:'Cormorant Garamond', serif; font-weight:600; font-size:26px;
+    color: var(--plumnavy); margin-bottom: 24px; text-align:center;
+  }
+
+  .section{ margin-bottom: 24px; }
+  .section:last-of-type{ margin-bottom:0; }
+  .section .label{
+    font-size:11.5px; letter-spacing:.1em; text-transform:uppercase;
+    color: var(--periwinkle); font-weight:600; margin-bottom:4px;
+  }
+  .section h2{
+    font-family:'Cormorant Garamond', serif; font-weight:600; font-size:21px;
+    color: var(--plumnavy); margin-bottom:10px;
+  }
+  .section p{ font-size:15px; color:#453a5c; }
+
+  .next-step{
+    background: var(--plumnavy); color: var(--cream);
+    border-radius:14px; padding: 24px 24px 26px; margin-top: 30px;
+  }
+  .next-step .label{ color: var(--gold); }
+  .next-step p{ font-size:14.5px; color:#E7E1F3; margin: 8px 0 18px; }
+  .btn{
+    display:block; width:100%; border:none; cursor:pointer;
+    font-family:'Jost', sans-serif; font-weight:600; font-size:15px;
+    border-radius:999px; padding: 15px 20px;
+    background: var(--gold); color: var(--plumnavy);
+    text-align:center; text-decoration:none;
+  }
+  .btn:hover{ opacity:.92; }
+  .sig{ margin-top:26px; font-size:14px; color:#5b5170; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="mark"></div>
+  <div class="eyebrow">No Dreams Left Behind</div>
+  <h1>Your Dream Identity Profile</h1>
+  <p class="sub">Where you are, what's waking up, and who you're becoming. Choose the result you got on the quiz to see your full profile.</p>
+
+  <div class="picker">
+    <button class="active" onclick="showProfile('sleep')">Sleep</button>
+    <button onclick="showProfile('awake')">Awake</button>
+    <button onclick="showProfile('ideal')">Ideal Self</button>
+  </div>
+
+  <!-- SLEEP -->
+  <div class="card active" id="card-sleep">
+    <div class="result-title">You're in Sleep</div>
+
+    <div class="section">
+      <div class="label">Where You Are Now</div>
+      <h2>Sleep State</h2>
+      <p>Right now, you're in Sleep. That means you're not yet living as your Ideal Self, and the gap between who you are and who you're capable of being can feel hopeless, lost, even heavy some days. This isn't a mindset problem, and it isn't about wanting it badly enough. Your self-concept — the quiet, automatic answer to "who am I?" — is still running on an old identity. You can visualize the goal all day, but if the woman in the vision doesn't match the woman you believe you are right now, your nervous system will keep pulling you back to what's familiar.</p>
+    </div>
+
+    <div class="section">
+      <div class="label">What's Waking Up</div>
+      <h2>Awakening State</h2>
+      <p>Here's the good news — you took this quiz. That's not nothing. Somewhere in you, something is already starting to stir: a low hum of "this isn't it," a flicker of noticing the old story instead of just living inside it. That flicker is the beginning of Awakening. It hasn't taken over yet, but it's there.</p>
+    </div>
+
+    <div class="section">
+      <div class="label">Who You're Becoming</div>
+      <h2>Ideal Self</h2>
+      <p>The version of you who already has what you want isn't a stranger forever. She's the woman whose self-concept and goals speak the same language — who receives without deflecting, who takes up space without apologizing. She's not a fantasy. She's who you become once the identity work is done.</p>
+    </div>
+
+    <div class="next-step">
+      <div class="label">Next Step</div>
+      <p>The work isn't manifesting harder. It's becoming her first. This is exactly where the D.R.E.A.M. Method starts — waking up the self-concept underneath the goal, before we ever touch strategy.</p>
+      <a class="btn" href="https://stan.store/monicaymoore" target="_blank">Start the D.R.E.A.M. Method →</a>
+    </div>
+    <p class="sig">I'll see you inside,<br>Monica</p>
+  </div>
+
+  <!-- AWAKE -->
+  <div class="card" id="card-awake">
+    <div class="result-title">You're Awake</div>
+
+    <div class="section">
+      <div class="label">Where You Are Now</div>
+      <h2>Sleep State</h2>
+      <p>You know Sleep. You've lived there, or parts of you still visit — the old story about who you're allowed to be. But you're not stuck there anymore.</p>
+    </div>
+
+    <div class="section">
+      <div class="label">What's Waking Up</div>
+      <h2>Awakening State</h2>
+      <p>This is where you live right now. You can see the gap between where you are and your Ideal Self, and you've already started taking action to close it. That's rare — most women never even get here. You're catching old patterns sometimes before they run the show. But awareness and action alone don't rebuild an identity overnight; they just show you where the wiring still needs work.</p>
+    </div>
+
+    <div class="section">
+      <div class="label">Who You're Becoming</div>
+      <h2>Ideal Self</h2>
+      <p>You're close enough to see her clearly now. The version of you who's fully aligned — self-concept and goals speaking the same language — isn't far off. Consistency is what closes the rest of the distance, not intensity.</p>
+    </div>
+
+    <div class="next-step">
+      <div class="label">Next Step</div>
+      <p>The D.R.E.A.M. Method is built for exactly this stage — moving you from noticing the pattern to actually replacing it, with real accountability on the action steps so you don't stall out this close to the finish.</p>
+      <a class="btn" href="https://stan.store/monicaymoore" target="_blank">See the D.R.E.A.M. Method + Accountability →</a>
+    </div>
+    <p class="sig">Let's close the gap,<br>Monica</p>
+  </div>
+
+  <!-- IDEAL SELF -->
+  <div class="card" id="card-ideal">
+    <div class="result-title">You're Living as Your Ideal Self</div>
+
+    <div class="section">
+      <div class="label">Where You Are Now</div>
+      <h2>Sleep State</h2>
+      <p>Sleep is mostly behind you. You know what that old identity felt like, but it's not running the show anymore.</p>
+    </div>
+
+    <div class="section">
+      <div class="label">What's Waking Up</div>
+      <h2>Awakening State</h2>
+      <p>This is largely done for you. You've already put in the work of noticing the gap and closing it — most of the old patterns don't run automatically anymore.</p>
+    </div>
+
+    <div class="section">
+      <div class="label">Who You're Becoming</div>
+      <h2>Ideal Self</h2>
+      <p>This is where you live. Your self-concept and your goals are mostly speaking the same language. You receive without deflecting, you take up space without apologizing, and when something good happens, you don't secretly wait for the other shoe. The edge for you now isn't identity work — it's expansion, making sure the next version of the goal doesn't outrun the version of you who's ready to hold it.</p>
+    </div>
+
+    <div class="next-step">
+      <div class="label">Next Step</div>
+      <p>This is exactly where women in The Dream Circle go to keep expanding without losing what they've already built.</p>
+      <a class="btn" href="https://stan.store/monicaymoore" target="_blank">Join The Dream Circle →</a>
+    </div>
+    <p class="sig">Keep going,<br>Monica</p>
+  </div>
+
+</div>
+
+<script>
+function showProfile(which){
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+  document.getElementById('card-' + which).classList.add('active');
+  document.querySelectorAll('.picker button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
