@@ -3,904 +3,207 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>From Corporate to Creator: On Your Own Terms | Monica Y. Moore</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Your Dream Identity Profile | No Dreams Left Behind</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --periwinkle: #5D5FA6;
+    --gold: #C9A15A;
+    --cream: #FAF6ED;
+    --plumnavy: #241A38;
+    --lavender: #ECE6F7;
+    --ink: #2B2140;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Jost', sans-serif;
+    background: radial-gradient(circle at 20% 10%, #EFE9F8 0%, var(--cream) 45%, var(--cream) 100%);
+    color: var(--ink);
+    min-height:100vh;
+    padding: 40px 18px 60px;
+    line-height:1.6;
+  }
+  .wrap{ max-width:680px; margin:0 auto; }
+  .mark{ width:34px; height:34px; margin:0 auto 14px; position:relative; }
+  .mark::before{ content:""; position:absolute; inset:0; border:2px solid var(--gold); border-radius:50%; }
+  .mark::after{ content:""; position:absolute; left:50%; top:50%; width:14px; height:14px; transform:translate(-50%,-50%) rotate(45deg); border:1px solid var(--gold); border-radius:2px; }
+  .eyebrow{ font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--periwinkle); text-align:center; font-weight:600; margin-bottom:6px; }
+  h1{ font-family:'Cormorant Garamond', serif; font-weight:600; font-size:36px; text-align:center; color:var(--plumnavy); line-height:1.15; margin-bottom:14px; }
+  .sub{ text-align:center; color:#5b5170; font-size:15.5px; max-width:480px; margin:0 auto 34px; }
 
-:root{
-  /* LIGHT PURPLES */
-  --bg:          #F8F4FF;
-  --bg-alt:      #F0EAF8;
-  --card:        #FFFFFF;
-  --border:      #DDD0EE;
-  --lavender:    #E8DFF5;
+  .picker{
+    display:flex; gap:8px; margin-bottom:30px;
+    background:#fff; border-radius:999px; padding:6px;
+    box-shadow: 0 12px 30px -18px rgba(36,26,56,0.3);
+    border: 1px solid rgba(93,95,166,0.12);
+  }
+  .picker button{
+    flex:1; border:none; background:transparent; cursor:pointer;
+    font-family:'Jost',sans-serif; font-weight:600; font-size:13.5px;
+    padding: 12px 8px; border-radius:999px; color:#8a80a0;
+    transition: background .15s ease, color .15s ease;
+  }
+  .picker button.active{ background: var(--periwinkle); color:#fff; }
 
-  /* MEDIUM PURPLES — hero and accents */
-  --purple:      #6B3FA0;
-  --purple-mid:  #8B5EC0;
-  --purple-dark: #2D1B4E;
-  --purple-pale: #B09CC8;
-  --purple-soft: #EDE5F5;
+  .card{
+    background:#fff; border-radius:18px;
+    box-shadow: 0 30px 60px -25px rgba(36,26,56,0.3);
+    border: 1px solid rgba(93,95,166,0.12);
+    padding: 40px 36px;
+    display:none;
+  }
+  .card.active{ display:block; animation: fadeIn .35s ease; }
+  @media (max-width:560px){ .card{ padding: 30px 22px; } }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
 
-  /* GOLD */
-  --gold:        #C9A84C;
-  --gold-b:      #E0C060;
-  --gold-p:      #F0D888;
-  --gold-d:      #8A6E28;
+  .result-title{
+    font-family:'Cormorant Garamond', serif; font-weight:600; font-size:26px;
+    color: var(--plumnavy); margin-bottom: 24px; text-align:center;
+  }
 
-  /* TEXT */
-  --text:        #2D1B4E;
-  --text-mid:    #6B5A80;
-  --text-light:  #9B8AAA;
-  --cream:       #F5F0E8;
-}
+  .section{ margin-bottom: 24px; }
+  .section:last-of-type{ margin-bottom:0; }
+  .section .label{
+    font-size:11.5px; letter-spacing:.1em; text-transform:uppercase;
+    color: var(--periwinkle); font-weight:600; margin-bottom:4px;
+  }
+  .section h2{
+    font-family:'Cormorant Garamond', serif; font-weight:600; font-size:21px;
+    color: var(--plumnavy); margin-bottom:10px;
+  }
+  .section p{ font-size:15px; color:#453a5c; }
 
-html{scroll-behavior:smooth;}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'Barlow',sans-serif;
-  font-weight:300;
-  overflow-x:hidden;
-}
-
-/* ── BUTTONS ── */
-.btn{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:700;letter-spacing:0.25em;text-transform:uppercase;
-  padding:16px 40px;border-radius:50px;border:none;
-  cursor:pointer;transition:all 0.25s;
-  display:inline-block;text-decoration:none;font-size:13px;
-}
-.btn-gold{background:var(--gold);color:var(--purple-dark);}
-.btn-gold:hover{background:var(--gold-b);transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,76,0.4);}
-.btn-white{background:#fff;color:var(--purple);}
-.btn-white:hover{background:var(--lavender);transform:translateY(-2px);}
-.btn-purple{background:var(--purple);color:#fff;}
-.btn-purple:hover{background:var(--purple-mid);transform:translateY(-2px);box-shadow:0 8px 24px rgba(107,63,160,0.35);}
-.btn-outline{background:transparent;color:var(--purple);border:2px solid var(--purple);}
-.btn-outline:hover{background:var(--purple);color:#fff;transform:translateY(-2px);}
-
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  background:rgba(248,244,255,0.95);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-  padding:16px 48px;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.nav-brand{
-  font-family:'Playfair Display',serif;
-  font-size:18px;font-weight:700;color:var(--purple);
-  text-decoration:none;line-height:1.1;
-}
-.nav-brand span{color:var(--gold);font-style:italic;}
-.nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
-.nav-links a{
-  font-size:13px;font-weight:500;letter-spacing:0.05em;
-  color:var(--text-mid);text-decoration:none;transition:color 0.2s;
-}
-.nav-links a:hover{color:var(--purple);}
-
-/* ── HERO ── */
-.hero{
-  min-height:100vh;
-  background:linear-gradient(135deg,var(--purple) 0%,#8B3FA8 50%,#5B2D88 100%);
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  text-align:center;
-  padding:120px 32px 80px;
-  position:relative;overflow:hidden;
-}
-
-.hero::before{
-  content:'';position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 60% 50% at 80% 20%,rgba(201,168,76,0.15) 0%,transparent 60%),
-    radial-gradient(ellipse 40% 60% at 10% 80%,rgba(255,255,255,0.05) 0%,transparent 60%);
-  pointer-events:none;
-}
-
-/* Floating circles decoration */
-.hero::after{
-  content:'';position:absolute;
-  width:600px;height:600px;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,0.06);
-  top:-200px;right:-200px;
-  pointer-events:none;
-}
-
-.hero-eyebrow{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:12px;font-weight:600;letter-spacing:0.4em;
-  text-transform:uppercase;color:var(--gold-p);
-  margin-bottom:20px;
-  display:flex;align-items:center;justify-content:center;gap:14px;
-  animation:fadeUp 0.6s ease 0.1s both;
-}
-.hero-eyebrow::before,.hero-eyebrow::after{
-  content:'';display:block;width:32px;height:1px;background:var(--gold-p);opacity:0.6;
-}
-
-.hero-title{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(40px,6.5vw,80px);
-  font-weight:900;line-height:0.95;
-  color:#fff;margin-bottom:16px;
-  letter-spacing:-0.02em;
-  animation:fadeUp 0.6s ease 0.2s both;
-}
-.hero-title .gold{color:var(--gold-b);font-style:italic;}
-.hero-title .thin{font-weight:400;font-style:italic;color:rgba(255,255,255,0.7);}
-
-.hero-sub{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:clamp(14px,2vw,20px);font-weight:300;
-  letter-spacing:0.18em;text-transform:uppercase;
-  color:rgba(255,255,255,0.65);
-  margin-bottom:24px;
-  animation:fadeUp 0.6s ease 0.3s both;
-}
-
-.hero-desc{
-  font-size:clamp(15px,1.8vw,18px);
-  color:rgba(255,255,255,0.75);
-  line-height:1.8;max-width:600px;
-  margin:0 auto 40px;
-  animation:fadeUp 0.6s ease 0.4s both;
-}
-.hero-desc strong{color:var(--gold-p);font-weight:400;}
-
-.hero-pills{
-  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
-  margin-bottom:44px;
-  animation:fadeUp 0.6s ease 0.5s both;
-}
-.hero-pill{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
-  padding:7px 18px;border-radius:100px;
-  background:rgba(255,255,255,0.1);
-  border:1px solid rgba(255,255,255,0.2);
-  color:rgba(255,255,255,0.85);
-}
-
-.hero-ctas{
-  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
-  animation:fadeUp 0.6s ease 0.6s both;
-  margin-bottom:20px;
-}
-
-.hero-note{
-  font-size:13px;color:rgba(255,255,255,0.4);
-  letter-spacing:0.06em;
-  animation:fadeUp 0.6s ease 0.7s both;
-}
-
-/* STATS STRIP */
-.stats-strip{
-  background:#fff;
-  padding:32px 48px;
-  display:flex;gap:0;
-  border-bottom:1px solid var(--border);
-}
-.stat{
-  flex:1;text-align:center;
-  padding:0 24px;
-  border-right:1px solid var(--border);
-}
-.stat:last-child{border-right:none;}
-.stat-num{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(28px,4vw,44px);font-weight:900;
-  color:var(--purple);line-height:1;margin-bottom:6px;
-}
-.stat-label{font-size:12px;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;}
-
-/* ── SECTIONS ── */
-.section{padding:88px 48px;}
-.section-alt{background:var(--bg-alt);padding:88px 48px;}
-.section-purple{background:var(--purple);padding:88px 48px;}
-.section-white{background:#fff;padding:88px 48px;}
-.inner{max-width:1060px;margin:0 auto;}
-
-.section-eyebrow{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:10px;font-weight:600;letter-spacing:0.4em;
-  text-transform:uppercase;color:var(--gold);
-  margin-bottom:10px;
-  display:flex;align-items:center;gap:10px;
-}
-.section-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--gold);}
-.section-eyebrow.light{color:var(--purple);}
-.section-eyebrow.light::before{background:var(--purple);}
-.section-eyebrow.white{color:rgba(255,255,255,0.6);}
-.section-eyebrow.white::before{background:rgba(255,255,255,0.4);}
-
-.section-title{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(28px,4vw,50px);font-weight:900;
-  line-height:1.05;margin-bottom:12px;letter-spacing:-0.01em;
-}
-.section-title.dark{color:var(--text);}
-.section-title.dark em{font-style:italic;color:var(--purple);font-weight:400;}
-.section-title.white{color:#fff;}
-.section-title.white em{font-style:italic;color:var(--gold-b);font-weight:400;}
-
-.section-sub{
-  font-size:16px;line-height:1.75;max-width:580px;margin-bottom:52px;
-}
-.section-sub.dark{color:var(--text-mid);}
-.section-sub.white{color:rgba(255,255,255,0.65);}
-
-/* ── WHO IT'S FOR ── */
-.who-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-  gap:16px;
-}
-.who-card{
-  background:#fff;border:1px solid var(--border);
-  border-radius:12px;padding:28px 24px;
-  border-top:3px solid var(--purple);
-  transition:all 0.2s;
-  box-shadow:0 2px 12px rgba(107,63,160,0.06);
-}
-.who-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 32px rgba(107,63,160,0.12);
-  border-top-color:var(--gold);
-}
-.who-icon{font-size:28px;margin-bottom:12px;display:block;}
-.who-name{
-  font-family:'Playfair Display',serif;
-  font-size:17px;font-weight:700;color:var(--text);margin-bottom:8px;
-}
-.who-desc{font-size:13px;color:var(--text-mid);line-height:1.65;margin-bottom:12px;}
-.who-quote{
-  font-size:12px;color:var(--purple);font-style:italic;
-  border-left:2px solid var(--gold);padding-left:10px;line-height:1.5;
-}
-
-/* ── WHAT'S INSIDE ── */
-.inside-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-  gap:2px;background:var(--border);
-  border-radius:12px;overflow:hidden;
-}
-.inside-card{
-  background:#fff;padding:32px 28px;
-  transition:background 0.2s;
-}
-.inside-card:hover{background:var(--purple-soft);}
-.ic-icon{font-size:32px;margin-bottom:14px;display:block;}
-.ic-name{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:15px;font-weight:700;letter-spacing:0.08em;
-  text-transform:uppercase;color:var(--purple);margin-bottom:6px;
-}
-.ic-desc{font-size:14px;color:var(--text-mid);line-height:1.65;}
-
-/* ── WHAT YOU'LL LEARN ── */
-.learn-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:12px;margin-bottom:44px;
-}
-.learn-item{
-  background:#fff;border:1px solid var(--border);
-  border-radius:8px;padding:20px 22px;
-  display:flex;gap:14px;align-items:flex-start;
-  transition:all 0.2s;
-}
-.learn-item:hover{border-color:var(--purple);box-shadow:0 4px 16px rgba(107,63,160,0.1);}
-.learn-check{
-  width:28px;height:28px;border-radius:50%;
-  background:rgba(201,168,76,0.12);
-  border:1.5px solid var(--gold);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;font-size:13px;color:var(--gold);font-weight:700;
-}
-.learn-text{font-size:14px;color:var(--text);line-height:1.55;padding-top:3px;}
-
-/* ── MONICA SECTION ── */
-.monica-grid{
-  display:grid;grid-template-columns:380px 1fr;
-  gap:72px;align-items:center;
-}
-.monica-photo-wrap{position:relative;}
-.monica-photo{
-  width:100%;border-radius:12px;
-  box-shadow:0 24px 60px rgba(107,63,160,0.2);
-  display:block;
-  border:3px solid var(--gold);
-}
-.monica-badge{
-  position:absolute;bottom:-16px;right:-16px;
-  background:var(--purple);
-  border:3px solid #fff;
-  border-radius:10px;padding:14px 18px;
-  box-shadow:0 8px 24px rgba(107,63,160,0.3);
-}
-.badge-num{
-  font-family:'Playfair Display',serif;
-  font-size:28px;font-weight:900;color:var(--gold-b);line-height:1;
-}
-.badge-label{font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;}
-
-.monica-cred{
-  display:flex;flex-direction:column;gap:10px;margin-top:28px;
-}
-.cred-item{
-  display:flex;gap:12px;align-items:center;
-  font-size:14px;color:var(--text-mid);
-}
-.cred-dot{
-  width:8px;height:8px;border-radius:50%;
-  background:var(--gold);flex-shrink:0;
-}
-
-/* ── PRICING ── */
-.pricing-card{
-  background:#fff;
-  border:2px solid var(--border);
-  border-radius:16px;overflow:hidden;
-  max-width:520px;margin:0 auto;
-  box-shadow:0 16px 48px rgba(107,63,160,0.12);
-}
-.pricing-header{
-  background:linear-gradient(135deg,var(--purple) 0%,var(--purple-mid) 100%);
-  padding:36px 40px;text-align:center;
-}
-.pricing-label{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:11px;font-weight:600;letter-spacing:0.3em;
-  text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:10px;
-}
-.pricing-name{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(22px,3vw,30px);font-weight:700;
-  color:#fff;margin-bottom:16px;line-height:1.15;
-}
-.pricing-name em{font-style:italic;color:var(--gold-b);font-weight:400;}
-.pricing-amount{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(48px,7vw,72px);font-weight:900;
-  color:var(--gold-b);line-height:1;
-}
-.pricing-per{font-size:16px;color:rgba(255,255,255,0.6);margin-top:4px;}
-.pricing-founding{
-  display:inline-block;
-  background:rgba(201,168,76,0.2);border:1px solid rgba(201,168,76,0.4);
-  border-radius:100px;padding:5px 16px;margin-top:10px;
-  font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--gold-p);font-family:'Barlow Condensed',sans-serif;
-}
-
-.pricing-body{padding:36px 40px;}
-.pricing-includes{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px;}
-.pricing-includes li{
-  display:flex;gap:12px;align-items:flex-start;
-  font-size:14px;color:var(--text);line-height:1.5;
-}
-.pi-check{
-  width:22px;height:22px;border-radius:50%;
-  background:rgba(201,168,76,0.1);border:1.5px solid var(--gold);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;font-size:11px;color:var(--gold);font-weight:700;
-  margin-top:1px;
-}
-.pricing-note{
-  font-size:12px;color:var(--text-light);text-align:center;
-  margin-top:12px;
-}
-
-/* ── FAQ ── */
-.faq-list{display:flex;flex-direction:column;gap:2px;max-width:720px;margin:0 auto;}
-.faq-item{
-  background:#fff;border:1px solid var(--border);
-  border-radius:8px;overflow:hidden;
-}
-.faq-q{
-  padding:20px 24px;cursor:pointer;
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:15px;font-weight:500;color:var(--text);
-  transition:background 0.2s;
-}
-.faq-q:hover{background:var(--purple-soft);}
-.faq-arrow{
-  font-size:18px;color:var(--purple);
-  transition:transform 0.2s;flex-shrink:0;
-}
-.faq-a{
-  display:none;padding:0 24px 20px;
-  font-size:14px;color:var(--text-mid);line-height:1.75;
-  border-top:1px solid var(--border);padding-top:16px;
-}
-.faq-item.open .faq-a{display:block;}
-.faq-item.open .faq-arrow{transform:rotate(180deg);}
-
-/* ── FINAL CTA ── */
-.final-cta{
-  background:linear-gradient(135deg,var(--purple) 0%,#5B2D88 100%);
-  padding:100px 48px;text-align:center;
-  position:relative;overflow:hidden;
-}
-.final-cta::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,168,76,0.08) 0%,transparent 70%);
-  pointer-events:none;
-}
-.final-title{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(32px,5vw,64px);font-weight:900;
-  color:#fff;line-height:1.0;margin-bottom:10px;
-  letter-spacing:-0.01em;
-}
-.final-title em{font-style:italic;color:var(--gold-b);}
-.final-sub{
-  font-size:clamp(15px,2vw,19px);color:rgba(255,255,255,0.65);
-  max-width:560px;margin:0 auto 40px;line-height:1.7;
-}
-.final-sub strong{color:var(--gold-p);font-weight:400;}
-
-/* ── FOOTER ── */
-footer{
-  background:var(--purple-dark);
-  padding:52px 48px 36px;
-  text-align:center;
-}
-.footer-brand{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(20px,3vw,32px);font-weight:900;
-  font-style:italic;color:var(--gold);margin-bottom:6px;
-}
-.footer-links{
-  display:flex;gap:24px;justify-content:center;
-  flex-wrap:wrap;margin:16px 0 24px;list-style:none;
-}
-.footer-links a{
-  font-size:12px;color:rgba(255,255,255,0.35);
-  text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;
-  transition:color 0.2s;
-}
-.footer-links a:hover{color:var(--gold);}
-.footer-legal{font-size:11px;color:rgba(255,255,255,0.15);letter-spacing:0.06em;}
-
-/* TICKER */
-.ticker{
-  background:var(--gold);padding:14px 0;overflow:hidden;
-}
-.ticker-inner{
-  display:flex;gap:0;white-space:nowrap;
-  animation:ticker 25s linear infinite;
-}
-@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.ticker-item{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:12px;font-weight:700;letter-spacing:0.2em;
-  text-transform:uppercase;color:var(--purple-dark);
-  padding:0 28px;display:flex;align-items:center;gap:14px;
-}
-.ticker-dot{width:4px;height:4px;border-radius:50%;background:rgba(45,27,78,0.3);}
-
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
-
-/* RESPONSIVE */
-@media(max-width:860px){
-  nav{padding:14px 20px;}
-  .nav-links{display:none;}
-  .hero{padding:100px 24px 60px;}
-  .section,.section-alt,.section-white,.section-purple{padding:60px 24px;}
-  .final-cta{padding:72px 24px;}
-  footer{padding:40px 24px 28px;}
-  .stats-strip{padding:24px;flex-wrap:wrap;gap:16px;}
-  .stat{border-right:none;padding:0;flex:1 1 40%;}
-  .learn-grid{grid-template-columns:1fr;}
-  .monica-grid{grid-template-columns:1fr;gap:40px;}
-  .monica-photo-wrap{max-width:340px;margin:0 auto;}
-  .pricing-body,.pricing-header{padding:24px;}
-}
+  .next-step{
+    background: var(--plumnavy); color: var(--cream);
+    border-radius:14px; padding: 24px 24px 26px; margin-top: 30px;
+  }
+  .next-step .label{ color: var(--gold); }
+  .next-step p{ font-size:14.5px; color:#E7E1F3; margin: 8px 0 18px; }
+  .btn{
+    display:block; width:100%; border:none; cursor:pointer;
+    font-family:'Jost', sans-serif; font-weight:600; font-size:15px;
+    border-radius:999px; padding: 15px 20px;
+    background: var(--gold); color: var(--plumnavy);
+    text-align:center; text-decoration:none;
+  }
+  .btn:hover{ opacity:.92; }
+  .sig{ margin-top:26px; font-size:14px; color:#5b5170; }
 </style>
 </head>
 <body>
+<div class="wrap">
+  <div class="mark"></div>
+  <div class="eyebrow">No Dreams Left Behind</div>
+  <h1>Your Dream Identity Profile</h1>
+  <p class="sub">Where you are, what's waking up, and who you're becoming. Choose the result you got on the quiz to see your full profile.</p>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-brand">From Corporate<br><span>to Creator</span></a>
-  <ul class="nav-links">
-    <li><a href="#inside">What's Inside</a></li>
-    <li><a href="#learn">What You'll Learn</a></li>
-    <li><a href="#monica">About Monica</a></li>
-    <li><a href="#pricing">Join — $27/mo</a></li>
-    <a href="https://stan.store/monicaymoore/monicaymoore_store/page/5065587" class="btn btn-gold" style="padding:10px 24px;font-size:11px;">Join the Academy →</a>
-  </ul>
-</nav>
-
-<!-- ══ HERO ══ -->
-<div class="hero">
-  <div class="hero-eyebrow">Monica Y. Moore · TikTok Shop Mentor</div>
-
-  <h1 class="hero-title">
-    From Corporate<br>
-    <span class="gold">to Creator.</span><br>
-    <span class="thin">On Your Own Terms.</span>
-  </h1>
-
-  <div class="hero-sub">The Academy for Women 50+ Who Are Done Building Someone Else's Empire</div>
-
-  <p class="hero-desc">
-    You've spent decades building skills that corporate America has been using to build <em>their</em> empire. <strong>It's time to use those same skills to build yours.</strong> TikTok Shop. UGC content. Going live. AI automation. All of it — while still employed.
-  </p>
-
-  <div class="hero-pills">
-    <span class="hero-pill">TikTok Shop</span>
-    <span class="hero-pill">UGC Creator</span>
-    <span class="hero-pill">Going Live</span>
-    <span class="hero-pill">AI Tools</span>
-    <span class="hero-pill">Brand Deals</span>
+  <div class="picker">
+    <button class="active" onclick="showProfile('sleep')">Sleep</button>
+    <button onclick="showProfile('awake')">Awake</button>
+    <button onclick="showProfile('ideal')">Ideal Self</button>
   </div>
 
-  <div class="hero-ctas">
-    <a href="https://stan.store/monicaymoore/monicaymoore_store/page/5065587" class="btn btn-gold">Join the Academy — $27/month →</a>
-    <a href="https://stan.store/monicaymoore/monicaymoore_store/page/5065587" class="btn btn-white">See What's Inside</a>
-  </div>
+  <!-- SLEEP -->
+  <div class="card active" id="card-sleep">
+    <div class="result-title">You're in Sleep</div>
 
-  <div class="hero-note">Cancel anytime · New lessons added weekly · Community of women just like you</div>
-</div>
-
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-inner">
-    <span class="ticker-item">From Corporate to Creator <span class="ticker-dot"></span></span>
-    <span class="ticker-item">On Your Own Terms <span class="ticker-dot"></span></span>
-    <span class="ticker-item">TikTok Shop Mentor <span class="ticker-dot"></span></span>
-    <span class="ticker-item">Women 50+ <span class="ticker-dot"></span></span>
-    <span class="ticker-item">UGC Creator <span class="ticker-dot"></span></span>
-    <span class="ticker-item">Build During Your 5-to-9 <span class="ticker-dot"></span></span>
-    <span class="ticker-item">From Corporate to Creator <span class="ticker-dot"></span></span>
-    <span class="ticker-item">On Your Own Terms <span class="ticker-dot"></span></span>
-    <span class="ticker-item">TikTok Shop Mentor <span class="ticker-dot"></span></span>
-    <span class="ticker-item">Women 50+ <span class="ticker-dot"></span></span>
-    <span class="ticker-item">UGC Creator <span class="ticker-dot"></span></span>
-    <span class="ticker-item">Build During Your 5-to-9 <span class="ticker-dot"></span></span>
-  </div>
-</div>
-
-<!-- STATS -->
-<div class="stats-strip">
-  <div class="stat">
-    <div class="stat-num">50+</div>
-    <div class="stat-label">Women this is built for</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">$27</div>
-    <div class="stat-label">Per month to join</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">5–9</div>
-    <div class="stat-label">When you build</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">∞</div>
-    <div class="stat-label">Scalable into retirement</div>
-  </div>
-</div>
-
-<!-- ══ WHO IT'S FOR ══ -->
-<div class="section" id="who">
-  <div class="inner">
-    <div class="section-eyebrow light">Who This Is For</div>
-    <h2 class="section-title dark">She knows something<br><em>is possible. She just needs the map.</em></h2>
-    <p class="section-sub dark">You don't need a big following. You don't need to quit your job first. You need a system, a mentor, and a community of women on the same journey.</p>
-
-    <div class="who-grid">
-      <div class="who-card">
-        <span class="who-icon">💼</span>
-        <div class="who-name">The Corporate Woman</div>
-        <div class="who-desc">Still employed. Still showing up. Quietly building her exit plan after 5pm while everyone else watches Netflix.</div>
-        <div class="who-quote">"I need income outside my paycheck before I walk away."</div>
-      </div>
-      <div class="who-card">
-        <span class="who-icon">📱</span>
-        <div class="who-name">The Aspiring Creator</div>
-        <div class="who-desc">She scrolls TikTok and thinks "I could do that" — but doesn't know where to start or how to make it pay.</div>
-        <div class="who-quote">"I want to create content that actually earns me money."</div>
-      </div>
-      <div class="who-card">
-        <span class="who-icon">🛍️</span>
-        <div class="who-name">The TikTok Shop Curious</div>
-        <div class="who-desc">She's heard about TikTok Shop commissions but doesn't know how to set it up, what to sell, or how to film a shoppable video.</div>
-        <div class="who-quote">"Show me exactly how to get my first sale."</div>
-      </div>
-      <div class="who-card">
-        <span class="who-icon">👗</span>
-        <div class="who-name">The Solopreneur</div>
-        <div class="who-desc">Has a business but no digital marketing system. Needs to learn TikTok Shop, going live, and AI tools to scale what she already has.</div>
-        <div class="who-quote">"Teach me to market what I already have."</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ WHAT'S INSIDE ══ -->
-<div class="section-alt" id="inside">
-  <div class="inner">
-    <div class="section-eyebrow light">What's Inside the Academy</div>
-    <h2 class="section-title dark">Everything you need.<br><em>Nothing you don't.</em></h2>
-    <p class="section-sub dark">$27/month gets you access to everything — lessons, workshops, challenges, and direct access to Monica. No upsells. No gatekeeping.</p>
-
-    <div class="inside-grid">
-      <div class="inside-card">
-        <span class="ic-icon">🎬</span>
-        <div class="ic-name">Recorded Lessons</div>
-        <div class="ic-desc">Step-by-step lessons on TikTok Shop setup, filming shoppable videos, going live, UGC content, and AI tools. Watch on your schedule. Replay anytime.</div>
-      </div>
-      <div class="inside-card">
-        <span class="ic-icon">🎙️</span>
-        <div class="ic-name">Weekly Live Workshops</div>
-        <div class="ic-desc">Every Thursday — live with Monica. Ask questions, get feedback on your content, and learn what's working right now. Replays available for members who can't attend live.</div>
-      </div>
-      <div class="inside-card">
-        <span class="ic-icon">🏆</span>
-        <div class="ic-name">Monthly Challenges</div>
-        <div class="ic-desc">30-video challenges, first sale challenges, go-live challenges. Accountability, prizes, and community support to keep you in action and growing.</div>
-      </div>
-      <div class="inside-card">
-        <span class="ic-icon">👥</span>
-        <div class="ic-name">Community Support</div>
-        <div class="ic-desc">A private community of women 50+ on the same journey. Share wins, ask questions, get feedback on your videos, and celebrate each other's progress.</div>
-      </div>
-      <div class="inside-card">
-        <span class="ic-icon">🤖</span>
-        <div class="ic-name">AI Tools Training</div>
-        <div class="ic-desc">ChatGPT for scripts. Claude for strategy. Marblism for automation. Genspark for content. I'll show you how to use the same AI tools I use to run my business.</div>
-      </div>
-      <div class="inside-card">
-        <span class="ic-icon">💬</span>
-        <div class="ic-name">Direct Access to Monica</div>
-        <div class="ic-desc">I'm in the community every day. I read every post. I respond to every introduction. This isn't a course you buy and never hear from the creator again.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ WHAT YOU'LL LEARN ══ -->
-<div class="section-white" id="learn">
-  <div class="inner">
-    <div class="section-eyebrow light">The Curriculum</div>
-    <h2 class="section-title dark">What you'll learn<br><em>inside the Academy.</em></h2>
-    <p class="section-sub dark">From your very first shoppable video to going live and landing brand deals — this is the complete TikTok Shop and UGC roadmap for women 50+.</p>
-
-    <div class="learn-grid">
-      <div class="learn-item">
-        <div class="learn-check">✓</div>
-        <div class="learn-text">How to set up your TikTok Shop affiliate account and get approved fast</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-check">✓</div>
-        <div class="learn-text">How to find free product samples from brands — before you spend a dollar</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-check">✓</div>
-        <div class="learn-text">How to film a quality shoppable video with just your phone</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-check">✓</div>
-        <div class="learn-text">Hook formulas that stop the scroll and drive clicks to your products</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-check">✓</div>
-        <div class="learn-text">How to batch a full week of content in 2 hours on Sunday</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-check">✓</div>
-        <div class="learn-text">Going live on TikTok — the fastest way to sell and earn commissions</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-check">✓</div>
-        <div class="learn-text">UGC content creation — how to get paid to create videos for brands</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-check">✓</div>
-        <div class="learn-text">How to pitch brands and land your first brand deal</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-check">✓</div>
-        <div class="learn-text">AI tools setup — ChatGPT, Claude, Marblism, and Genspark for creators</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-check">✓</div>
-        <div class="learn-text">How to use AI to write your scripts, captions, and hooks in minutes</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-check">✓</div>
-        <div class="learn-text">Amazon Influencer Program — earn royalties from products you already buy</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-check">✓</div>
-        <div class="learn-text">How to stack multiple income streams while still at your 9-to-5</div>
-      </div>
+    <div class="section">
+      <div class="label">Where You Are Now</div>
+      <h2>Sleep State</h2>
+      <p>Right now, you're in Sleep. That means you're not yet living as your Ideal Self, and the gap between who you are and who you're capable of being can feel hopeless, lost, even heavy some days. This isn't a mindset problem, and it isn't about wanting it badly enough. Your self-concept — the quiet, automatic answer to "who am I?" — is still running on an old identity. You can visualize the goal all day, but if the woman in the vision doesn't match the woman you believe you are right now, your nervous system will keep pulling you back to what's familiar.</p>
     </div>
 
-    <div style="text-align:center;">
-      <a href="https://stan.store/monicaymoore/monicaymoore_store/page/5065587" class="btn btn-purple">Join the Academy and Start Learning →</a>
+    <div class="section">
+      <div class="label">What's Waking Up</div>
+      <h2>Awakening State</h2>
+      <p>Here's the good news — you took this quiz. That's not nothing. Somewhere in you, something is already starting to stir: a low hum of "this isn't it," a flicker of noticing the old story instead of just living inside it. That flicker is the beginning of Awakening. It hasn't taken over yet, but it's there.</p>
     </div>
-  </div>
-</div>
 
-<!-- ══ MONICA'S STORY ══ -->
-<div class="section" id="monica">
-  <div class="inner">
-    <div class="monica-grid">
-
-      <!-- PHOTO -->
-      <div class="monica-photo-wrap">
-        <img src="profile.jpg" alt="Monica Y. Moore" class="monica-photo">
-        <div class="monica-badge">
-          <div class="badge-num">55</div>
-          <div class="badge-label">Still building</div>
-        </div>
-      </div>
-
-      <!-- STORY -->
-      <div>
-        <div class="section-eyebrow light" style="margin-bottom:10px;">Meet Your Mentor</div>
-        <h2 class="section-title dark" style="margin-bottom:16px;">Monica Y. Moore<br><em>I built this while still at my desk.</em></h2>
-
-        <p style="font-size:15px;color:var(--text-mid);line-height:1.85;margin-bottom:16px;">I'm 55 years old. I've worked in corporate America for over 20 years — from teaching second grade to tripling my salary in corporate training and operations. And a few years ago, I started building something on the side.</p>
-
-        <p style="font-size:15px;color:var(--text-mid);line-height:1.85;margin-bottom:16px;">TikTok Shop. UGC content. Brand deals. AI automation. All of it — before work, after work, on my lunch break. While corporate slept, I was building.</p>
-
-        <p style="font-size:15px;color:var(--text-mid);line-height:1.85;margin-bottom:28px;">I realized that everything I learned in corporate — the communication, the training, the systems, the relationship building — was preparing me for this. I just needed to redirect it. And when I did? Everything changed.</p>
-
-        <div class="monica-cred">
-          <div class="cred-item">
-            <div class="cred-dot"></div>
-            <span>Invited into TikTok's Spark Creator Program while still employed</span>
-          </div>
-          <div class="cred-item">
-            <div class="cred-dot"></div>
-            <span>Active brand deal with ShaperX — $100 + commission per week</span>
-          </div>
-          <div class="cred-item">
-            <div class="cred-dot"></div>
-            <span>TikTok Shop affiliate earning commissions on products I love</span>
-          </div>
-          <div class="cred-item">
-            <div class="cred-dot"></div>
-            <span>UGC creator building a portfolio of brand partnerships</span>
-          </div>
-          <div class="cred-item">
-            <div class="cred-dot"></div>
-            <span>20+ years of corporate skills — now working for MY empire</span>
-          </div>
-        </div>
-
-        <div style="margin-top:28px;padding:20px 24px;background:var(--purple-soft);border-radius:8px;border-left:3px solid var(--gold);">
-          <p style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:var(--text);line-height:1.55;">"I didn't wake up one day and quit. I spent years building the tunnel — quietly, while corporate slept. Now I'm writing the map so you don't have to dig as long or as blind."</p>
-          <p style="font-size:12px;color:var(--text-light);margin-top:8px;letter-spacing:0.1em;text-transform:uppercase;">— Monica Y. Moore</p>
-        </div>
-      </div>
-
+    <div class="section">
+      <div class="label">Who You're Becoming</div>
+      <h2>Ideal Self</h2>
+      <p>The version of you who already has what you want isn't a stranger forever. She's the woman whose self-concept and goals speak the same language — who receives without deflecting, who takes up space without apologizing. She's not a fantasy. She's who you become once the identity work is done.</p>
     </div>
-  </div>
-</div>
 
-<!-- ══ PRICING ══ -->
-<div class="section-alt" id="pricing">
-  <div class="inner" style="text-align:center;">
-    <div class="section-eyebrow light" style="justify-content:center;">Join the Academy</div>
-    <h2 class="section-title dark" style="margin-bottom:12px;">Simple pricing.<br><em>No surprises.</em></h2>
-    <p class="section-sub dark" style="margin:0 auto 48px;">One price. Everything included. Cancel anytime.</p>
-
-    <div class="pricing-card">
-      <div class="pricing-header">
-        <div class="pricing-label">From Corporate to Creator Academy</div>
-        <div class="pricing-name">Monthly Membership<br><em>All Access</em></div>
-        <div class="pricing-amount">$27</div>
-        <div class="pricing-per">per month · cancel anytime</div>
-        <span class="pricing-founding">🎉 Founding Member Rate</span>
-      </div>
-      <div class="pricing-body">
-        <ul class="pricing-includes">
-          <li><div class="pi-check">✓</div><span>All recorded lessons — TikTok Shop, UGC, going live, AI tools</span></li>
-          <li><div class="pi-check">✓</div><span>Weekly live workshops with Monica every Thursday</span></li>
-          <li><div class="pi-check">✓</div><span>Monthly challenges with community accountability</span></li>
-          <li><div class="pi-check">✓</div><span>Private community of women 50+ on the same journey</span></li>
-          <li><div class="pi-check">✓</div><span>Direct access to Monica — she's in the community daily</span></li>
-          <li><div class="pi-check">✓</div><span>New lessons added every week as I learn and build</span></li>
-          <li><div class="pi-check">✓</div><span>AI tools training — the same tools Monica uses every day</span></li>
-        </ul>
-        <a href="https://stan.store/monicaymoore/monicaymoore_store/page/5065587" class="btn btn-gold" style="width:100%;display:block;text-align:center;border-radius:8px;">Join the Academy — $27/month →</a>
-        <p class="pricing-note">Secure payment · Cancel anytime · Instant access after joining</p>
-      </div>
+    <div class="next-step">
+      <div class="label">Next Step</div>
+      <p>The work isn't manifesting harder. It's becoming her first. This is exactly where the D.R.E.A.M. Method starts — waking up the self-concept underneath the goal, before we ever touch strategy.</p>
+      <a class="btn" href="https://stan.store/monicaymoore" target="_blank">Start the D.R.E.A.M. Method →</a>
     </div>
+    <p class="sig">I'll see you inside,<br>Monica</p>
   </div>
-</div>
 
-<!-- ══ FAQ ══ -->
-<div class="section-white">
-  <div class="inner">
-    <div class="section-eyebrow light" style="justify-content:center;">Common Questions</div>
-    <h2 class="section-title dark" style="text-align:center;margin-bottom:44px;">Got questions?<br><em>Here are the answers.</em></h2>
+  <!-- AWAKE -->
+  <div class="card" id="card-awake">
+    <div class="result-title">You're Awake</div>
 
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Do I need a big TikTok following to make money on TikTok Shop?
-          <span class="faq-arrow">↓</span>
-        </div>
-        <div class="faq-a">Absolutely not. TikTok Shop pushes your shoppable videos directly to people who are already browsing that product — regardless of your follower count. Monica has made sales on videos with 1 like. You don't need fame. You need the right product, the right tag, and consistency.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          I'm not tech-savvy. Will I be able to keep up?
-          <span class="faq-arrow">↓</span>
-        </div>
-        <div class="faq-a">Yes. Everything inside the Academy is taught step-by-step, screen by screen. If you can send a text message and scroll TikTok, you can do this. Monica also teaches you AI tools that make the technical stuff easier — not harder.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Can I do this while still working my 9-to-5?
-          <span class="faq-arrow">↓</span>
-        </div>
-        <div class="faq-a">That's exactly what this community is built for. Monica built her entire TikTok Shop and UGC business while still employed — before work, after work, and during her 5-to-9. The content batching system inside the Academy lets you film a full week of content in 2 hours on Sunday.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          What if I don't know what niche I'm in?
-          <span class="faq-arrow">↓</span>
-        </div>
-        <div class="faq-a">That's one of the first things we tackle inside the Academy. Your niche is hiding in your everyday life — what you buy, what you do for work, what people ask you for help with. The free Mission Kit skills audit on this site is a great place to start. Take it before you join.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Can I cancel anytime?
-          <span class="faq-arrow">↓</span>
-        </div>
-        <div class="faq-a">Yes — cancel anytime inside your Skool settings. No contracts, no commitments, no questions asked. But fair warning — once you see your first TikTok Shop commission notification, you won't want to leave.</div>
-      </div>
+    <div class="section">
+      <div class="label">Where You Are Now</div>
+      <h2>Sleep State</h2>
+      <p>You know Sleep. You've lived there, or parts of you still visit — the old story about who you're allowed to be. But you're not stuck there anymore.</p>
     </div>
-  </div>
-</div>
 
-<!-- ══ FINAL CTA ══ -->
-<div class="final-cta">
-  <h2 class="final-title">You've spent enough time<br><em>building someone else's empire.</em></h2>
-  <p class="final-sub">
-    <strong>It's your turn now.</strong> Join a community of women 50+ who are done waiting for the right time, the right following, or the right moment. The right time is now. The right community is here.
-  </p>
-  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-    <a href="https://stan.store/monicaymoore/monicaymoore_store/page/5065587" class="btn btn-gold">Join the Academy — $27/month →</a>
-    <a href="https://stan.store/monicaymoore/monicaymoore_store/page/5065587" class="btn btn-white">Free Mission Kit First →</a>
-  </div>
-  <p style="margin-top:20px;font-size:13px;color:rgba(255,255,255,0.35);">Cancel anytime · Instant access · New lessons every week</p>
-</div>
+    <div class="section">
+      <div class="label">What's Waking Up</div>
+      <h2>Awakening State</h2>
+      <p>This is where you live right now. You can see the gap between where you are and your Ideal Self, and you've already started taking action to close it. That's rare — most women never even get here. You're catching old patterns sometimes before they run the show. But awareness and action alone don't rebuild an identity overnight; they just show you where the wiring still needs work.</p>
+    </div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-brand">From Corporate to Creator</div>
-  <p style="font-size:13px;color:rgba(255,255,255,0.3);margin-bottom:16px;">On Your Own Terms · Monica Y. Moore LLC</p>
-  <p style="font-size:12px;color:rgba(255,255,255,0.2);margin-bottom:16px;">120 9th St N Ste 201 · Birmingham, AL 35203</p>
-  <ul class="footer-links">
-    <li><a href="https://stan.store/monicaymoore/monicaymoore_store/page/5065587">Join the Academy</a></li>
-    <li><a href="#">Free Mission Kit</a></li>
-    <li><a href="mailto:monica@monicaymoore.com">monica@monicaymoore.com</a></li>
-    <li><a href="#">@kluhbarbie on TikTok</a></li>
-  </ul>
-  <div class="footer-legal">© 2026 Monica Y. Moore LLC · From Corporate to Creator: On Your Own Terms · All rights reserved.</div>
-</footer>
+    <div class="section">
+      <div class="label">Who You're Becoming</div>
+      <h2>Ideal Self</h2>
+      <p>You're close enough to see her clearly now. The version of you who's fully aligned — self-concept and goals speaking the same language — isn't far off. Consistency is what closes the rest of the distance, not intensity.</p>
+    </div>
+
+    <div class="next-step">
+      <div class="label">Next Step</div>
+      <p>The D.R.E.A.M. Method is built for exactly this stage — moving you from noticing the pattern to actually replacing it, with real accountability on the action steps so you don't stall out this close to the finish.</p>
+      <a class="btn" href="https://stan.store/monicaymoore" target="_blank">See the D.R.E.A.M. Method + Accountability →</a>
+    </div>
+    <p class="sig">Let's close the gap,<br>Monica</p>
+  </div>
+
+  <!-- IDEAL SELF -->
+  <div class="card" id="card-ideal">
+    <div class="result-title">You're Living as Your Ideal Self</div>
+
+    <div class="section">
+      <div class="label">Where You Are Now</div>
+      <h2>Sleep State</h2>
+      <p>Sleep is mostly behind you. You know what that old identity felt like, but it's not running the show anymore.</p>
+    </div>
+
+    <div class="section">
+      <div class="label">What's Waking Up</div>
+      <h2>Awakening State</h2>
+      <p>This is largely done for you. You've already put in the work of noticing the gap and closing it — most of the old patterns don't run automatically anymore.</p>
+    </div>
+
+    <div class="section">
+      <div class="label">Who You're Becoming</div>
+      <h2>Ideal Self</h2>
+      <p>This is where you live. Your self-concept and your goals are mostly speaking the same language. You receive without deflecting, you take up space without apologizing, and when something good happens, you don't secretly wait for the other shoe. The edge for you now isn't identity work — it's expansion, making sure the next version of the goal doesn't outrun the version of you who's ready to hold it.</p>
+    </div>
+
+    <div class="next-step">
+      <div class="label">Next Step</div>
+      <p>This is exactly where women in The Dream Circle go to keep expanding without losing what they've already built.</p>
+      <a class="btn" href="https://stan.store/monicaymoore" target="_blank">Join The Dream Circle →</a>
+    </div>
+    <p class="sig">Keep going,<br>Monica</p>
+  </div>
+
+</div>
 
 <script>
-function toggleFaq(el) {
-  const item = el.parentElement;
-  item.classList.toggle('open');
+function showProfile(which){
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+  document.getElementById('card-' + which).classList.add('active');
+  document.querySelectorAll('.picker button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
 }
 </script>
-
 </body>
 </html>
