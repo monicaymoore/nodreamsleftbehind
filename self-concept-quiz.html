@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Am I Blocking My Own Success? | No Dreams Left Behind</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --periwinkle: #5D5FA6;
+    --gold: #C9A15A;
+    --cream: #FAF6ED;
+    --plumnavy: #241A38;
+    --lavender: #ECE6F7;
+    --ink: #2B2140;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Jost', sans-serif;
+    background: radial-gradient(circle at 20% 10%, #EFE9F8 0%, var(--cream) 45%, var(--cream) 100%);
+    color: var(--ink);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 32px 18px;
+    line-height:1.5;
+  }
+  .stage{
+    width:100%;
+    max-width:640px;
+    position:relative;
+  }
+  .card{
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 30px 60px -25px rgba(36,26,56,0.35);
+    overflow:hidden;
+    border: 1px solid rgba(93,95,166,0.12);
+  }
+  /* dreamcatcher mark */
+  .mark{
+    width:34px; height:34px;
+    margin: 0 auto 14px;
+    position:relative;
+  }
+  .mark::before{
+    content:"";
+    position:absolute; inset:0;
+    border: 2px solid var(--gold);
+    border-radius:50%;
+  }
+  .mark::after{
+    content:"";
+    position:absolute; left:50%; top:50%;
+    width:14px; height:14px;
+    transform:translate(-50%,-50%) rotate(45deg);
+    border:1px solid var(--gold);
+    border-radius:2px;
+  }
+
+  .panel{ padding: 44px 40px 36px; }
+  @media (max-width:520px){ .panel{ padding: 34px 22px 28px; } }
+
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color: var(--periwinkle);
+    text-align:center;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size: 34px;
+    text-align:center;
+    color: var(--plumnavy);
+    line-height:1.15;
+    margin-bottom: 14px;
+  }
+  .sub{
+    text-align:center;
+    color:#5b5170;
+    font-size:15.5px;
+    max-width:440px;
+    margin: 0 auto 28px;
+  }
+  .btn{
+    display:block;
+    width:100%;
+    border:none;
+    cursor:pointer;
+    font-family:'Jost', sans-serif;
+    font-weight:600;
+    font-size:15px;
+    letter-spacing:.02em;
+    border-radius: 999px;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, var(--periwinkle), #4A4C8C);
+    color: #fff;
+    transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+    box-shadow: 0 12px 24px -10px rgba(93,95,166,0.55);
+  }
+  .btn:hover{ transform: translateY(-1px); box-shadow: 0 16px 28px -10px rgba(93,95,166,0.6); }
+  .btn:disabled{ opacity:.35; cursor:not-allowed; transform:none; box-shadow:none; }
+  .btn.ghost{
+    background:transparent;
+    color: var(--periwinkle);
+    box-shadow:none;
+    border: 1.5px solid rgba(93,95,166,0.35);
+    margin-top:10px;
+  }
+  .btn.ghost:hover{ background: var(--lavender); }
+
+  .meta{
+    text-align:center;
+    font-size:12.5px;
+    color:#8a80a0;
+    margin-top:18px;
+  }
+
+  /* progress */
+  .progress-wrap{ padding: 18px 40px 0; }
+  @media (max-width:520px){ .progress-wrap{ padding: 16px 22px 0; } }
+  .progress-track{
+    height:5px;
+    background: var(--lavender);
+    border-radius:999px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background: linear-gradient(90deg, var(--gold), var(--periwinkle));
+    border-radius:999px;
+    transition: width .35s ease;
+    width:0%;
+  }
+  .q-count{
+    font-size:12px;
+    color:#8a80a0;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin: 10px 0 2px;
+  }
+
+  .q-text{
+    font-family:'Cormorant Garamond', serif;
+    font-size:26px;
+    font-weight:600;
+    color:var(--plumnavy);
+    margin: 6px 0 22px;
+    line-height:1.3;
+  }
+  .options{ display:flex; flex-direction:column; gap:10px; }
+  .opt{
+    text-align:left;
+    background: var(--cream);
+    border: 1.5px solid rgba(93,95,166,0.15);
+    border-radius:12px;
+    padding: 14px 16px;
+    cursor:pointer;
+    font-family:'Jost', sans-serif;
+    font-size:14.5px;
+    color: var(--ink);
+    transition: border-color .15s ease, background .15s ease, transform .1s ease;
+  }
+  .opt:hover{ border-color: var(--periwinkle); background:#fff; }
+  .opt.selected{
+    border-color: var(--periwinkle);
+    background: var(--lavender);
+    box-shadow: inset 0 0 0 1px var(--periwinkle);
+  }
+  .nav-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:26px;
+    gap:12px;
+  }
+  .link-btn{
+    background:none; border:none; cursor:pointer;
+    color:#8a80a0; font-size:13.5px; font-family:'Jost',sans-serif;
+    padding:8px 4px;
+  }
+  .link-btn:hover{ color: var(--periwinkle); }
+  .nav-row .btn{ width:auto; padding: 13px 26px; }
+
+  /* results */
+  .badge{
+    display:inline-block;
+    margin: 0 auto 16px;
+    padding: 6px 16px;
+    border-radius:999px;
+    background: var(--lavender);
+    color: var(--periwinkle);
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    font-weight:600;
+  }
+  .badge-row{ text-align:center; }
+  .result-desc{
+    font-size:15px;
+    color:#453a5c;
+    margin-bottom: 18px;
+  }
+  .result-desc strong{ color:var(--plumnavy); }
+  .score-bar-wrap{ margin: 22px 0 26px; }
+  .score-label{
+    display:flex; justify-content:space-between;
+    font-size:11.5px; color:#8a80a0; letter-spacing:.06em; text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .score-track{
+    height:10px; background:var(--lavender); border-radius:999px; overflow:hidden;
+    position:relative;
+  }
+  .score-fill{
+    height:100%;
+    border-radius:999px;
+    background: linear-gradient(90deg, #B9BBDE, var(--gold));
+  }
+  .next-step{
+    background: var(--plumnavy);
+    color: var(--cream);
+    border-radius:14px;
+    padding: 22px 24px;
+    margin-top: 6px;
+  }
+  .next-step .k{
+    font-family:'Cormorant Garamond', serif;
+    font-size:20px;
+    font-weight:600;
+    color: var(--gold);
+    margin-bottom:8px;
+  }
+  .next-step p{ font-size:14px; color: #E7E1F3; margin-bottom:16px; }
+  .next-step .btn{ background: var(--gold); color: var(--plumnavy); box-shadow:none; }
+  .next-step .btn:hover{ opacity:.92; }
+
+  .hidden{ display:none !important; }
+  .fade-in{ animation: fadeIn .35s ease; }
+  @keyframes fadeIn{ from{opacity:0; transform: translateY(6px);} to{opacity:1; transform:none;} }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="card">
+
+    <!-- INTRO -->
+    <div id="screen-intro" class="panel fade-in">
+      <div class="mark"></div>
+      <div class="eyebrow">No Dreams Left Behind</div>
+      <h1>Am I Blocking My Own Success?</h1>
+      <p class="sub">Vision boards and affirmations don't fail because you did them wrong. They fail when who you believe you are hasn't caught up to what you're asking for. 10 questions, 2 minutes, zero fluff.</p>
+      <button class="btn" onclick="startQuiz()">Take the Quiz</button>
+      <div class="meta">No email required to see your result.</div>
+    </div>
+
+    <!-- QUIZ -->
+    <div id="screen-quiz" class="panel hidden">
+      <div class="progress-wrap" style="padding:0 0 18px;">
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="q-count" id="qCount">Question 1 of 10</div>
+      </div>
+      <div class="q-text" id="qText"></div>
+      <div class="options" id="qOptions"></div>
+      <div class="nav-row">
+        <button class="link-btn" id="backBtn" onclick="prevQuestion()">← Back</button>
+        <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="screen-results" class="panel hidden">
+      <div class="badge-row"><span class="badge" id="resultBadge"></span></div>
+      <h1 id="resultTitle" style="font-size:30px;"></h1>
+
+      <div class="score-bar-wrap">
+        <div class="score-label"><span>Sleep</span><span>Awake</span><span>Ideal Self</span></div>
+        <div class="score-track"><div class="score-fill" id="scoreFill"></div></div>
+      </div>
+
+      <p class="result-desc" id="resultTeaser" style="font-style:italic;"></p>
+
+      <div id="gateBox" class="next-step">
+        <div class="k">Unlock Your Dream Identity Profile</div>
+        <p>Enter your email to get your complete result, what it means for your self-concept, and your recommended next step in the D.R.E.A.M. Method.</p>
+        <a href="https://stan.store/monicaymoore" target="_blank" style="text-decoration:none;">
+          <button class="btn">Get My Dream Identity Profile →</button>
+        </a>
+      </div>
+
+      <button class="btn ghost" onclick="restartQuiz()">Retake the Quiz</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const questions = [
+  {
+    q: "When something you've been wanting shows up out of nowhere, your first reaction is:",
+    options: [
+      "\"That's not for me — there's got to be a catch.\"",
+      "Excited, but bracing for it to fall through.",
+      "Grateful, a little surprised, but you accept it.",
+      "\"Of course. I called this in.\""
+    ]
+  },
+  {
+    q: "Picture the version of you who already has what you want. When you look at her, she feels:",
+    options: [
+      "Like a stranger — you can't even picture her.",
+      "Familiar, but far away, like an old friend you lost touch with.",
+      "Close — you catch glimpses of her in yourself lately.",
+      "Like who you're already becoming."
+    ]
+  },
+  {
+    q: "Someone compliments your work in front of others. You:",
+    options: [
+      "Deflect immediately — \"oh, it was nothing\" — and change the subject.",
+      "Say thank you, then privately wonder if they meant it.",
+      "Say thank you and actually let it land.",
+      "Say thank you, and mention what's coming next."
+    ]
+  },
+  {
+    q: "When you think about charging what you're worth — or asking for the raise, the deal, the seat at the table — what happens in your body?",
+    options: [
+      "Tight chest. \"Who am I to ask for that?\"",
+      "Nerves, but you talk yourself into a lower number, just to be safe.",
+      "A little nervous, but you ask for the real number.",
+      "Calm. You know your value and you state it plainly."
+    ]
+  },
+  {
+    q: "What's the story you were handed about people \"like you\" — your family, your generation, your background — and money or success?",
+    options: [
+      "You still hear it every time you try to expand.",
+      "You know it's a lie, but it whispers loud when you're tired.",
+      "You've rewritten most of it — old habits show up occasionally.",
+      "You wrote your own story. The old one doesn't run in the background anymore."
+    ]
+  },
+  {
+    q: "Your goals from a year ago — how do they compare to your life now?",
+    options: [
+      "Basically untouched. You wrote them and moved on.",
+      "A couple of small wins, mostly still \"someday.\"",
+      "Several are actually happening.",
+      "You've outgrown that list — you're living past it."
+    ]
+  },
+  {
+    q: "When you imagine being truly seen — visible, known for your work — your honest reaction is:",
+    options: [
+      "Anxiety. You'd rather stay behind the scenes.",
+      "You want it, but you shrink the moment eyes are on you.",
+      "You're getting more comfortable being seen, on purpose.",
+      "You take up the space without apologizing for it."
+    ]
+  },
+  {
+    q: "Something good happens, and then — almost on cue — something falls apart. How often is that your pattern?",
+    options: [
+      "Every single time. It's like clockwork.",
+      "Often enough that you've started to notice it.",
+      "Rare now — you catch it before it lands.",
+      "It doesn't really happen anymore."
+    ]
+  },
+  {
+    q: "When you talk to yourself about your future — out loud or in your head — you sound like:",
+    options: [
+      "Your harshest critic, listing every reason it won't work.",
+      "Someone hopeful, but bracing for disappointment.",
+      "A coach who believes in you, most days.",
+      "The woman who already did it, talking you through it."
+    ]
+  },
+  {
+    q: "If your life today is the exact, precise result of who you currently believe you are — how do you feel about that?",
+    options: [
+      "Terrifying. It means I built this ceiling myself.",
+      "Uncomfortable, but it explains a lot.",
+      "Relieved — it means I can build a new one.",
+      "Powerful. I already know what's coming next."
+    ]
+  }
+];
+
+let current = 0;
+let answers = new Array(questions.length).fill(null);
+
+function startQuiz(){
+  document.getElementById('screen-intro').classList.add('hidden');
+  document.getElementById('screen-quiz').classList.remove('hidden');
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const data = questions[current];
+  document.getElementById('qText').textContent = data.q;
+  document.getElementById('qCount').textContent = `Question ${current+1} of ${questions.length}`;
+  document.getElementById('progressFill').style.width = `${((current)/questions.length)*100}%`;
+
+  const optWrap = document.getElementById('qOptions');
+  optWrap.innerHTML = '';
+  data.options.forEach((optText, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt' + (answers[current] === idx ? ' selected' : '');
+    btn.textContent = optText;
+    btn.onclick = () => selectOption(idx);
+    optWrap.appendChild(btn);
+  });
+
+  document.getElementById('backBtn').style.visibility = current === 0 ? 'hidden' : 'visible';
+  document.getElementById('nextBtn').disabled = answers[current] === null;
+  document.getElementById('nextBtn').textContent = current === questions.length - 1 ? 'See My Result' : 'Next';
+}
+
+function selectOption(idx){
+  answers[current] = idx;
+  document.getElementById('nextBtn').disabled = false;
+  [...document.getElementById('qOptions').children].forEach((el,i)=>{
+    el.classList.toggle('selected', i===idx);
+  });
+}
+
+function nextQuestion(){
+  if(answers[current] === null) return;
+  if(current === questions.length - 1){
+    showResults();
+  } else {
+    current++;
+    renderQuestion();
+  }
+}
+
+function prevQuestion(){
+  if(current === 0) return;
+  current--;
+  renderQuestion();
+}
+
+function showResults(){
+  const score = answers.reduce((sum, a) => sum + (a + 1), 0); // each option worth 1-4
+  document.getElementById('screen-quiz').classList.add('hidden');
+  const resultsScreen = document.getElementById('screen-results');
+  resultsScreen.classList.remove('hidden');
+  resultsScreen.classList.add('fade-in');
+
+  let badge, title, teaser, fillPct;
+
+  if(score <= 19){
+    badge = "Sleep";
+    title = "You're in Sleep";
+    teaser = "Sleep means you're not yet living as your Ideal Self — and that gap can feel hopeless, lost, even heavy some days. This isn't a mindset problem...";
+    fillPct = "16%";
+  } else if(score <= 29){
+    badge = "Awake";
+    title = "You're Awake";
+    teaser = "Awake means you can see the gap between where you are and your Ideal Self — and you've started taking action to close it. That's not nothing...";
+    fillPct = "50%";
+  } else {
+    badge = "Ideal Self";
+    title = "You're Living as Your Ideal Self";
+    teaser = "Your self-concept and your goals are mostly speaking the same language. The edge now is expansion...";
+    fillPct = "88%";
+  }
+
+  document.getElementById('resultBadge').textContent = badge;
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultTeaser').textContent = teaser;
+  document.getElementById('scoreFill').style.width = fillPct;
+}
+
+function restartQuiz(){
+  current = 0;
+  answers = new Array(questions.length).fill(null);
+  document.getElementById('screen-results').classList.add('hidden');
+  document.getElementById('screen-intro').classList.remove('hidden');
+}
+</script>
+</body>
+</html>
