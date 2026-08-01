@@ -40,6 +40,16 @@
     overflow:hidden;
     border: 1px solid rgba(93,95,166,0.12);
   }
+  .brand-band{
+    background: linear-gradient(135deg, var(--periwinkle), var(--plumnavy));
+    padding: 22px 40px 18px;
+    text-align:center;
+  }
+  @media (max-width:520px){ .brand-band{ padding: 18px 22px 14px; } }
+  .brand-band .mark2{ width:28px; height:28px; margin:0 auto 6px; position:relative; }
+  .brand-band .mark2::before{ content:""; position:absolute; inset:0; border:2px solid var(--gold); border-radius:50%; }
+  .brand-band .mark2::after{ content:""; position:absolute; left:50%; top:50%; width:11px; height:11px; transform:translate(-50%,-50%) rotate(45deg); border:1px solid var(--gold); border-radius:2px; }
+  .brand-band .eyebrow2{ color: var(--gold); font-size:11px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; }
   /* dreamcatcher mark */
   .mark{
     width:34px; height:34px;
@@ -159,7 +169,8 @@
   .opt{
     text-align:left;
     background: var(--cream);
-    border: 1.5px solid rgba(93,95,166,0.15);
+    border: 1.5px solid rgba(93,95,166,0.2);
+    border-left: 4px solid rgba(93,95,166,0.25);
     border-radius:12px;
     padding: 14px 16px;
     cursor:pointer;
@@ -168,9 +179,10 @@
     color: var(--ink);
     transition: border-color .15s ease, background .15s ease, transform .1s ease;
   }
-  .opt:hover{ border-color: var(--periwinkle); background:#fff; }
+  .opt:hover{ border-color: var(--periwinkle); border-left-color: var(--gold); background:#fff; }
   .opt.selected{
     border-color: var(--periwinkle);
+    border-left-color: var(--gold);
     background: var(--lavender);
     box-shadow: inset 0 0 0 1px var(--periwinkle);
   }
@@ -252,13 +264,29 @@
 <div class="stage">
   <div class="card">
 
-    <!-- INTRO -->
+    <div class="brand-band">
+      <div class="mark2"></div>
+      <div class="eyebrow2">No Dreams Left Behind</div>
+    </div>
+
+    <!-- STORY / LANDING -->
     <div id="screen-intro" class="panel fade-in">
-      <div class="mark"></div>
-      <div class="eyebrow">No Dreams Left Behind</div>
-      <h1>Am I Blocking My Own Success?</h1>
-      <p class="sub">Vision boards and affirmations don't fail because you did them wrong. They fail when who you believe you are hasn't caught up to what you're asking for. 10 questions, 2 minutes, zero fluff.</p>
-      <button class="btn" onclick="startQuiz()">Start Quiz</button>
+      <h1 style="font-size:30px;">Are you over 50 and feel stuck in your life?</h1>
+
+      <p class="sub" style="text-align:left; max-width:none; margin-bottom:16px;">At 54, I felt hopeless. I was staring down becoming the cat lady — stuck in a house I'd lived in for 19 years and hated, in a career that drained me, carrying weight I didn't want, and telling myself this was just how it was going to be.</p>
+
+      <p class="sub" style="text-align:left; max-width:none; margin-bottom:16px;">Here's what I learned: I wasn't actually stuck. My situation wasn't the problem. My <strong style="color:var(--plumnavy);">self-concept</strong> was.</p>
+
+      <p class="sub" style="text-align:left; max-width:none; margin-bottom:16px;">The story I believed about who I was — that's what was keeping me exactly where I was, no matter how many goals I set.</p>
+
+      <p class="sub" style="text-align:left; max-width:none; margin-bottom:28px;">Once I changed my self-concept, I changed my life. In 90 days, I did what I'd spent years telling myself wasn't possible.</p>
+
+      <p class="sub" style="text-align:left; max-width:none; margin-bottom:24px; font-family:'Cormorant Garamond', serif; font-style:italic; font-size:19px; color:var(--plumnavy);">So let me ask you the question I wish someone had asked me: are you where I was?</p>
+
+      <a href="https://stan.store/monicaymoore" target="_blank" style="text-decoration:none; display:block;">
+        <button class="btn">Take the Quiz →</button>
+      </a>
+      <div class="meta">2 minutes, zero fluff. Enter your name & email to begin.</div>
     </div>
 
     <!-- QUIZ -->
@@ -285,11 +313,13 @@
         <div class="score-track"><div class="score-fill" id="scoreFill"></div></div>
       </div>
 
+      <p class="result-desc" id="resultDesc"></p>
+
       <div class="next-step">
-        <div class="k">Get Your Full Dream Identity Profile</div>
-        <p>Enter your email to see your complete result — what this stage means, the full breakdown of Sleep, Awake, and Ideal Self, and your recommended next step.</p>
-        <a href="https://stan.store/monicaymoore" target="_blank" style="text-decoration:none;">
-          <button class="btn">Get My Results →</button>
+        <div class="k">Your Next Step</div>
+        <p id="resultCta"></p>
+        <a href="https://stan.store/monicaymoore" target="_blank" id="resultLink" style="text-decoration:none;">
+          <button class="btn"></button>
         </a>
       </div>
 
@@ -454,25 +484,43 @@ function showResults(){
   resultsScreen.classList.remove('hidden');
   resultsScreen.classList.add('fade-in');
 
-  let badge, title, fillPct;
+  let badge, title, desc, cta, linkText, fillPct;
 
   if(score <= 19){
     badge = "Sleep";
     title = "You're in Sleep";
+    desc = "Sleep means you're not yet living as your Ideal Self — and the gap between who you are right now and who you're capable of being can feel hopeless, lost, even heavy some days. This isn't a mindset problem, and it isn't about wanting it badly enough. Your self-concept — the quiet, automatic answer to \"who am I?\" — is still running on an old identity. The work isn't manifesting harder. It's becoming her first.";
+    cta = "This is exactly where the D.R.E.A.M. Method starts — but starting from Sleep means starting with real support, not going it alone.";
+    linkText = "Start with Support — $1,497 →";
     fillPct = "16%";
   } else if(score <= 29){
     badge = "Awake";
     title = "You're Awake";
+    desc = "Awake means you can see the gap between where you are and your Ideal Self — and you've started taking action to close it. That's not nothing; most women never even get here. You're catching old patterns sometimes before they run the show. You're close. This is the part where consistency matters more than intensity.";
+    cta = "You're already Awake — you don't need to start at square one. The D.R.E.A.M. Method self-paced course gives you the full framework to work through on your own, at your pace.";
+    linkText = "Begin the D.R.E.A.M. Method — $47 →";
     fillPct = "50%";
   } else {
     badge = "Ideal Self";
     title = "You're Living as Your Ideal Self";
+    desc = "Your self-concept and your goals are mostly speaking the same language. You receive without deflecting, you take up space without apologizing, and when something good happens you don't secretly wait for the other shoe. The edge now is expansion — making sure the next version of the goal doesn't outrun the version of you who's ready to hold it.";
+    cta = "This is where women in The Dream Circle go to keep expanding without losing what they've built.";
+    linkText = "Join The Dream Circle →";
     fillPct = "88%";
   }
 
   document.getElementById('resultBadge').textContent = badge;
   document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultDesc').textContent = desc;
+  document.getElementById('resultCta').textContent = cta;
+  document.querySelector('#resultLink button').textContent = linkText;
   document.getElementById('scoreFill').style.width = fillPct;
+}
+
+// If someone arrives back from the Stan opt-in (e.g. quiz.html?start=true),
+// skip the intro and drop them straight into question 1.
+if(new URLSearchParams(window.location.search).get('start') === 'true'){
+  window.addEventListener('DOMContentLoaded', startQuiz);
 }
 
 function restartQuiz(){
